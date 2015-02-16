@@ -32,7 +32,7 @@ namespace GameConnectionReporting
             CreateNotifyStructure();
 
             SetFormValues();
-
+            SetPerformanceUpdateTimer();
         }
 
         #region Event Handlers
