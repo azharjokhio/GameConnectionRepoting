@@ -32,6 +32,7 @@ namespace GameConnectionReporting
             CreateNotifyStructure();
 
             SetFormValues();
+
         }
 
         #region Event Handlers
@@ -81,7 +82,12 @@ namespace GameConnectionReporting
             private void Feedback_Click(object sender, RoutedEventArgs e)
             {
 
-            } 
+            }
+
+            private void performanceUpdateTimer_Tick(object sender, EventArgs e)
+            {
+                SetFormValues();
+            }
 
         #endregion
 
@@ -162,8 +168,15 @@ namespace GameConnectionReporting
             public void SetProgressBarValue(Label lbl, ProgressBar PrgsBar)
             {
                 PrgsBar.Value = Convert.ToDouble(lbl.Content.ToString().Remove(lbl.Content.ToString().Length - 2));
-            } 
+            }
 
+            private void SetPerformanceUpdateTimer()
+            {
+                System.Windows.Threading.DispatcherTimer performanceUpdateTimer = new System.Windows.Threading.DispatcherTimer();
+                performanceUpdateTimer.Tick += new EventHandler(performanceUpdateTimer_Tick);
+                performanceUpdateTimer.Interval = new TimeSpan(0, 0, 30);
+                performanceUpdateTimer.Start();
+            }
         #endregion
 
     }
