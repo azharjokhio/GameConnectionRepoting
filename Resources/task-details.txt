@@ -1,0 +1,11 @@
+Trial developer will make an application, images are provided to show how that application works.
+ 
+Improvement indicator, graph and meter on application are dynamic. Random values will be generated to produce Improvement indicator, graph and meter values. 
+ 
+Application needs to be minimized in system tray on click minimize button, in system tray application needs to show 2 options open and exit. 
+
+Proper icon should be shown in task bar.
+ 
+On pressing disconnect game button everything will be reset and text of button changes to connect game
+ 
+On finishing application will be uploaded to github and url will be provided to every concerned person

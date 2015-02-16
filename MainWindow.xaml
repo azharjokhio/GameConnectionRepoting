@@ -1,0 +1,126 @@
+﻿<Window x:Class="GameConnectionReporting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="583" Width="691" Style="{StaticResource Window}"  WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
+
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/pic.png"></ImageBrush>
+    </Window.Background>
+
+    <Canvas>
+
+        <Image x:Name="imgLogo" Canvas.Left="6" Source="pack://application:,,,/Resources/logo.png" Canvas.Top="1" />
+        <Label Canvas.Top="4" Canvas.Left="37" Content="Kill Ping - Viverra Convallis Feslisnec Pellentesque" Foreground="LightGray" FontWeight="SemiBold" FontSize="10" />
+
+        <TextBlock x:Name="txtBlkClose" Canvas.Top="6" Canvas.Right="6">
+            <Hyperlink x:Name="btnExit" ToolTip="Exit" Click="btnExit_Click">
+                <Image x:Name="imgExit" Source="pack://application:,,,/Resources/close.png" />
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock x:Name="txtBlkMinimize" Canvas.Top="6" Canvas.Right="25">
+            <Hyperlink x:Name="btnMinimize" ToolTip="Minimize" Click="btnMinimize_Click">
+                <Image x:Name="imgMinimize" Source="pack://application:,,,/Resources/minimize.png" />
+            </Hyperlink>
+        </TextBlock>
+
+        <Label Canvas.Top="39" Canvas.Left="24" Content="Game Connection Reporting" FontWeight="Bold" FontSize="15" Foreground="White" />
+        <Border Canvas.Top="41" Canvas.Left="239" Height="20" BorderThickness="2,0,0,0" BorderBrush="Gray"/>
+        <Label Canvas.Top="41" Canvas.Left="257" Content="Active game:" FontWeight="SemiBold"  FontSize="13" Foreground="Gray" />
+        <Label Canvas.Top="41" Canvas.Left="350" Content="Dota2" FontWeight="Bold" FontSize="14" Foreground="GreenYellow" />
+        <TextBlock Width="122" Height="25" TextAlignment="Center" Canvas.Top="40" Canvas.Right="20">
+            <Hyperlink ToolTip="Feedback">
+                <Canvas Width="122" Height="22" >
+                    <Label Canvas.Top="3" Canvas.Left="11" Content="Disconnect Game" FontWeight="Bold" Foreground="LightGray" FontSize="12" />
+                    <Border Width="122" Height="25" BorderThickness="1,1,1,1" BorderBrush="Red"></Border>
+                </Canvas>
+            </Hyperlink>
+        </TextBlock>
+        
+        <Label Canvas.Top="80" Canvas.Left="15" Content="Connections Stats"   Style="{StaticResource GridLabel}" />
+        <Label Canvas.Top="80" Canvas.Left="205" Content="GVPN" Style="{StaticResource GridLabel}" />
+        <Label Canvas.Top="80" Canvas.Left="305" Content="Internet" Style="{StaticResource GridLabel}" />
+        <Label Canvas.Top="80" Canvas.Left="405" Content="Connection improvement %" Style="{StaticResource GridLabel}" />
+
+        <Label Canvas.Top="106" Canvas.Left="20" Content="Ping Spikes" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow1GVPN" Canvas.Top="106" Canvas.Left="209" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow1Internet" Canvas.Top="106" Canvas.Left="309"  Style="{StaticResource GridLabel}" />
+        <ProgressBar x:Name="PrgsBarServer1ImpPrctge" Canvas.Top="112" Canvas.Left="409" Value="0" />
+        <Label x:Name="lblServer1ImpPrctge" Canvas.Top="109" Canvas.Left="616" Style="{StaticResource GridLabelGreen}" />
+
+        <Label Canvas.Top="128" Canvas.Left="20" Content="Ping Flux Avg" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow2GVPN"  Canvas.Top="128" Canvas.Left="209" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow2Internet" Canvas.Top="128" Canvas.Left="309" Style="{StaticResource GridLabel}" />
+        <ProgressBar x:Name="PrgsBarServer2ImpPrctge" Canvas.Top="134" Canvas.Left="409" Value="0" />
+        <Label x:Name="lblServer2ImpPrctge" Canvas.Top="131" Canvas.Left="616" Style="{StaticResource GridLabelGreen}" />
+
+        <Label Canvas.Top="150" Canvas.Left="20" Content="10 Sec Ping" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow3GVPN" Canvas.Top="150" Canvas.Left="209" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow3Internet" Canvas.Top="150" Canvas.Left="309" Style="{StaticResource GridLabel}" />
+        <ProgressBar x:Name="PrgsBarServer3ImpPrctge" Canvas.Top="156" Canvas.Left="409" Value="0" />
+        <Label x:Name="lblServer3ImpPrctge" Canvas.Top="153" Canvas.Left="616" Style="{StaticResource GridLabelGreen}" />
+
+        <Label Canvas.Top="172" Canvas.Left="20" Content="Ping Avg" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow4GVPN" Canvas.Top="172" Canvas.Left="209" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow4Internet" Canvas.Top="172" Canvas.Left="309" Style="{StaticResource GridLabel}" />
+        <ProgressBar x:Name="PrgsBarServer4ImpPrctge" Canvas.Top="178" Canvas.Left="409" Value="0" />
+        <Label x:Name="lblServer4ImpPrctge" Canvas.Top="175" Canvas.Left="616" Style="{StaticResource GridLabelGreen}" />
+
+        <Label Canvas.Top="194" Canvas.Left="20" Content="Lost Packet" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow5GVPN" Canvas.Top="194" Canvas.Left="209" Style="{StaticResource GridLabel}" />
+        <Label x:Name="lblRow5Internet" Canvas.Top="194" Canvas.Left="309" Style="{StaticResource GridLabel}" />
+        <ProgressBar x:Name="PrgsBarServer5ImpPrctge" Canvas.Top="199" Canvas.Left="409" Value="0" />
+        <Label x:Name="lblServer5ImpPrctge" Canvas.Top="196" Canvas.Left="616" Style="{StaticResource GridLabelGreen}" />
+
+        <Label Canvas.Top="426" Canvas.Left="55" Content="Active Connections" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblActiveConnections" Canvas.Top="426" Canvas.Left="169" Style="{StaticResource SummaryLabelLight}" />
+
+        <Label Canvas.Top="449" Canvas.Left="55" Content="GVPN Server Location" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblGVPNServerLocation" Canvas.Top="449" Canvas.Left="169" Style="{StaticResource SummaryLabelLight}" />
+
+        <Label Canvas.Top="472" Canvas.Left="55" Content="Game Server Location" Style="{StaticResource SummaryLabelBold}" />
+        
+
+        <Label Canvas.Top="495" Canvas.Left="55" Content="Active Server" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblActiveServer" Canvas.Top="495" Canvas.Left="169" Style="{StaticResource SummaryLabelLight}" />
+
+        <Border Canvas.Top="428" Canvas.Left="276" Height="85" BorderThickness="2,0,0,0" BorderBrush="Gray"/>
+
+        <Label Canvas.Top="426" Canvas.Left="296" Content="Connection Improvement" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblConnectionImprovement" Canvas.Top="444" Canvas.Left="348" Style="{StaticResource SummaryLabelLight}" />
+
+        <Border Canvas.Top="430" Canvas.Left="457" Height="85" BorderThickness="2,0,0,0" BorderBrush="Gray"/>
+
+        <Label Canvas.Top="426" Canvas.Left="468" Content="Game connection time" Style="{StaticResource SummaryLabelBold}" />
+        <Label Canvas.Top="426" Canvas.Left="596" Content="00 : 00 : 30" Style="{StaticResource SummaryLabelLight}" />
+
+        <Label Canvas.Top="449" Canvas.Left="468" Content="Ping" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblPing" Canvas.Top="449" Canvas.Left="595"  Style="{StaticResource SummaryLabelLight}" />
+
+        <Label Canvas.Top="472" Canvas.Left="468" Content="Bytes received" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblBytesReceived" Canvas.Top="472" Canvas.Left="595" Style="{StaticResource SummaryLabelLight}" />
+
+        <Label Canvas.Top="494" Canvas.Left="468" Content="Bytes sent" Style="{StaticResource SummaryLabelBold}" />
+        <Label x:Name="lblBytesSent" Canvas.Top="495" Canvas.Left="595" Style="{StaticResource SummaryLabelLight}" />
+
+        <Label Canvas.Top="557" Canvas.Left="24" Content="GVPN Account:" FontSize="10" Foreground="LightGray" />
+
+        <Border Canvas.Top="558" Canvas.Left="266" Height="16" BorderThickness="1,0,0,0" BorderBrush="Gray"/>
+
+        <TextBlock HorizontalAlignment="Center" Canvas.Top="557" Canvas.Left="283">
+            <Hyperlink x:Name="hlnkKillPong" ToolTip="Add a Contact" Click="hlnkKillPong_Click">
+                <Label Content="WWW.KILLPING.COM" Foreground="LightGray" FontSize="10" />
+			</Hyperlink>
+        </TextBlock>
+
+        <TextBlock Width="86" Height="18" TextAlignment="Center" Canvas.Bottom="6" Canvas.Right="10">
+            <Hyperlink x:Name="Feedback" ToolTip="Feedback" Click="Feedback_Click">
+                <Canvas Width="86" Height="18" >
+                    <Image Canvas.Top="3" Canvas.Left="10" Source="pack://application:,,,/Resources/feedback.png" />
+                    <Label Canvas.Top="0" Canvas.Left="23" Content="Feedback" Foreground="LightGray" FontSize="12" />
+                    <Border Width="86" Height="18" BorderThickness="1,1,1,1" BorderBrush="GreenYellow"></Border>
+                </Canvas>
+            </Hyperlink>
+        </TextBlock>
+
+    </Canvas>
+</Window>
