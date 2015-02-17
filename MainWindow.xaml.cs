@@ -70,7 +70,10 @@ namespace GameConnectionReporting
 
             this.PlotModel = CreatePlot();
             this.DataContext = this;
+
         }
+
+   
 
         private PlotModel CreatePlot()
         {
@@ -272,7 +275,12 @@ namespace GameConnectionReporting
             string[] ActiveServers = new string[] { "Ukrainian Server", "Indian Server", "American Server", "Australian Server", "Pakistani Server", "Canadian Server" };
             lblActiveServer.Content = ActiveServers[random.Next(5)];
 
+            double value1 = GenerateRandomValue(0, 100);
             GenerateRandomValue(lblConnectionImprovement, "%", 0, 100);
+            //lblConnectionImprovement.Content = value1 + "%";
+
+         
+
             GenerateRandomValue(lblPing, "", 0, 999);
             GenerateRandomValue(lblBytesReceived, "KB", 0, 999);
             GenerateRandomValue(lblBytesSent, "KB", 0, 999);
@@ -351,4 +359,5 @@ namespace GameConnectionReporting
         #endregion
 
     }
+
 }
