@@ -93,18 +93,60 @@ namespace GameConnectionReporting
                 DisconnectGameServer();
                 IsGameConnected = false;
                 lblGameConnectivity.Content = "Connect Game";
+                btnGameConnectivity.ToolTip = "Connect Game";
             }
             else
             {
                 ConnectGameServer();
                 IsGameConnected = true;
                 lblGameConnectivity.Content = "Disconnect Game";
+                btnGameConnectivity.ToolTip = "Disconnect Game";
             }
         }
 
         private void btnFeedback_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnGameConnectivity_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdGameConnectivity.BorderBrush = Brushes.LightBlue;
+        }
+
+        private void btnGameConnectivity_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdGameConnectivity.BorderBrush = Brushes.Red;
+        }
+
+        private void btnFeedback_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdFeedback.BorderBrush = Brushes.LightBlue;
+        }
+
+        private void btnFeedback_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdFeedback.BorderBrush = Brushes.YellowGreen;
+        }
+
+        private void btnMinimize_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdMinimize.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void btnMinimize_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdMinimize.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void btnExit_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdExit.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void btnExit_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdExit.Visibility = System.Windows.Visibility.Hidden;
         }
 
         #endregion
@@ -235,8 +277,6 @@ namespace GameConnectionReporting
             performanceUpdateTimer.Start();
         }
         #endregion
-
-
 
     }
 }

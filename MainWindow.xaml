@@ -13,13 +13,19 @@
         <Label Canvas.Top="4" Canvas.Left="37" Content="Kill Ping - Viverra Convallis Feslisnec Pellentesque" Foreground="LightGray" FontWeight="SemiBold" FontSize="10" />
 
         <TextBlock x:Name="txtBlkClose" Canvas.Top="6" Canvas.Right="6">
-            <Hyperlink x:Name="btnExit" ToolTip="Exit" Click="btnExit_Click">
-                <Image x:Name="imgExit" Source="pack://application:,,,/Resources/close.png" />
+            <Hyperlink x:Name="btnExit" ToolTip="Exit" Click="btnExit_Click" MouseEnter="btnExit_MouseEnter" MouseLeave="btnExit_MouseLeave">
+                <Canvas Width="18" Height="17" > 
+                    <Image x:Name="imgExit" Source="pack://application:,,,/Resources/close.png" />
+                    <Border x:Name="brdExit" Width="18" Height="17" BorderThickness="1,1,1,1" BorderBrush="LightBlue" Visibility="Hidden"></Border>
+                </Canvas>                    
             </Hyperlink>
         </TextBlock>
         <TextBlock x:Name="txtBlkMinimize" Canvas.Top="6" Canvas.Right="25">
-            <Hyperlink x:Name="btnMinimize" ToolTip="Minimize" Click="btnMinimize_Click">
-                <Image x:Name="imgMinimize" Source="pack://application:,,,/Resources/minimize.png" />
+            <Hyperlink x:Name="btnMinimize" ToolTip="Minimize" Click="btnMinimize_Click" MouseEnter="btnMinimize_MouseEnter" MouseLeave="btnMinimize_MouseLeave">
+                <Canvas Width="18" Height="17" > 
+                    <Image x:Name="imgMinimize" Source="pack://application:,,,/Resources/minimize.png" />
+                    <Border x:Name="brdMinimize" Width="18" Height="17" BorderThickness="1,1,1,1" BorderBrush="LightBlue" Visibility="Hidden"></Border>
+                </Canvas>                    
             </Hyperlink>
         </TextBlock>
 
@@ -28,10 +34,10 @@
         <Label Canvas.Top="41" Canvas.Left="257" Content="Active game:" FontWeight="SemiBold"  FontSize="13" Foreground="Gray" />
         <Label Canvas.Top="41" Canvas.Left="350" Content="Dota2" FontWeight="Bold" FontSize="14" Foreground="GreenYellow" />
         <TextBlock Width="122" Height="25" TextAlignment="Center" Canvas.Top="40" Canvas.Right="20">
-            <Hyperlink x:Name="btnGameConnectivity" Click="btnGameConnectivity_Click">
+            <Hyperlink x:Name="btnGameConnectivity" ToolTip="Disconnect Game" Click="btnGameConnectivity_Click" MouseEnter="btnGameConnectivity_MouseEnter" MouseLeave="btnGameConnectivity_MouseLeave">
                 <Canvas Width="122" Height="25" >
-                    <Label x:Name="lblGameConnectivity" Width="120" HorizontalContentAlignment="Center" Content="Disconnect Game" Canvas.Top="3" Canvas.Left="1" FontWeight="Bold" Foreground="LightGray" FontSize="12" />
-                    <Border Width="122" Height="25" BorderThickness="1,1,1,1" BorderBrush="Red"></Border>
+                    <Label x:Name="lblGameConnectivity" Height="23" Width="120" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Disconnect Game" Canvas.Top="1" Canvas.Left="1" FontWeight="Bold" Foreground="LightGray" FontSize="12" />
+                    <Border x:Name="brdGameConnectivity" Width="122" Height="25" BorderThickness="1,1,1,1" BorderBrush="Red"></Border>
                 </Canvas>
             </Hyperlink>
         </TextBlock>
@@ -107,17 +113,17 @@
         <Border Canvas.Top="558" Canvas.Left="266" Height="16" BorderThickness="1,0,0,0" BorderBrush="Gray"/>
 
         <TextBlock HorizontalAlignment="Center" Canvas.Top="557" Canvas.Left="283">
-            <Hyperlink x:Name="hlnkKillPong" ToolTip="Add a Contact" Click="hlnkKillPong_Click">
+            <Hyperlink x:Name="hlnkKillPong" TextDecorations="Underline" ToolTip="WWW.KILLPING.COM" Click="hlnkKillPong_Click">
                 <Label Content="WWW.KILLPING.COM" Foreground="LightGray" FontSize="10" />
 			</Hyperlink>
         </TextBlock>
 
         <TextBlock Width="86" Height="18" TextAlignment="Center" Canvas.Bottom="6" Canvas.Right="10">
-            <Hyperlink x:Name="btnFeedback" ToolTip="Feedback" Click="btnFeedback_Click">
+            <Hyperlink x:Name="btnFeedback" ToolTip="Feedback" Click="btnFeedback_Click" MouseEnter="btnFeedback_MouseEnter" MouseLeave="btnFeedback_MouseLeave">
                 <Canvas Width="86" Height="18" >
                     <Image Canvas.Top="3" Canvas.Left="10" Source="pack://application:,,,/Resources/feedback.png" />
                     <Label Canvas.Top="1" Canvas.Left="1" Padding="25,0,0,0"  Width="84" Content="Feedback" Foreground="LightGray" FontSize="12" />
-                    <Border Width="86" Height="18" BorderThickness="1,1,1,1" BorderBrush="GreenYellow"></Border>
+                    <Border x:Name="brdFeedback" Width="86" Height="18" BorderThickness="1,1,1,1" BorderBrush="GreenYellow"></Border>
                 </Canvas>
             </Hyperlink>
         </TextBlock>
