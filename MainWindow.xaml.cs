@@ -17,7 +17,6 @@ namespace GameConnectionReporting
 {
     public partial class MainWindow : Window
     {
-
         System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
         System.Windows.Forms.ContextMenuStrip trayMenu = new System.Windows.Forms.ContextMenuStrip();
 
