@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,8 @@ namespace GameConnectionReporting
 
         bool IsGameConnected = true;
 
+        public IList<DataPoint> Points { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +38,10 @@ namespace GameConnectionReporting
 
             ConnectGameServer();
             SetPerformanceUpdateTimer();
+
+            var vm = new MainViewModel();
+            this.DataContext = vm;
+   
         }
 
         #region Event Handlers
