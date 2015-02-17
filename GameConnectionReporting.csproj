@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CircularGauge">
-      <HintPath>..\CircularGaugeWPFSourceWithDemoVS2008\CircularGauge\bin\Debug\CircularGauge.dll</HintPath>
+      <HintPath>E:\New Work\CircularGaugeWPFSourceWithDemoVS2008\CircularGaugeDemoWPF\bin\Debug\CircularGauge.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot">
       <HintPath>packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
