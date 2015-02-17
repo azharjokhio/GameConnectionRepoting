@@ -28,14 +28,14 @@
         <Label Canvas.Top="41" Canvas.Left="257" Content="Active game:" FontWeight="SemiBold"  FontSize="13" Foreground="Gray" />
         <Label Canvas.Top="41" Canvas.Left="350" Content="Dota2" FontWeight="Bold" FontSize="14" Foreground="GreenYellow" />
         <TextBlock Width="122" Height="25" TextAlignment="Center" Canvas.Top="40" Canvas.Right="20">
-            <Hyperlink ToolTip="Feedback">
-                <Canvas Width="122" Height="22" >
-                    <Label Canvas.Top="3" Canvas.Left="11" Content="Disconnect Game" FontWeight="Bold" Foreground="LightGray" FontSize="12" />
+            <Hyperlink x:Name="btnGameConnectivity" Click="btnGameConnectivity_Click">
+                <Canvas Width="122" Height="25" >
+                    <Label x:Name="lblGameConnectivity" Width="120" HorizontalContentAlignment="Center" Content="Disconnect Game" Canvas.Top="3" Canvas.Left="1" FontWeight="Bold" Foreground="LightGray" FontSize="12" />
                     <Border Width="122" Height="25" BorderThickness="1,1,1,1" BorderBrush="Red"></Border>
                 </Canvas>
             </Hyperlink>
         </TextBlock>
-        
+
         <Label Canvas.Top="80" Canvas.Left="15" Content="Connections Stats"   Style="{StaticResource GridLabel}" />
         <Label Canvas.Top="80" Canvas.Left="205" Content="GVPN" Style="{StaticResource GridLabel}" />
         <Label Canvas.Top="80" Canvas.Left="305" Content="Internet" Style="{StaticResource GridLabel}" />
@@ -78,12 +78,12 @@
         <Label x:Name="lblGVPNServerLocation" Canvas.Top="449" Canvas.Left="169" Style="{StaticResource SummaryLabelLight}" />
 
         <Label Canvas.Top="472" Canvas.Left="55" Content="Game Server Location" Style="{StaticResource SummaryLabelBold}" />
-        
+
 
         <Label Canvas.Top="495" Canvas.Left="55" Content="Active Server" Style="{StaticResource SummaryLabelBold}" />
         <Label x:Name="lblActiveServer" Canvas.Top="495" Canvas.Left="169" Style="{StaticResource SummaryLabelLight}" />
 
-        <Border Canvas.Top="428" Canvas.Left="276" Height="85" BorderThickness="2,0,0,0" BorderBrush="Gray"/>
+        <Border Canvas.Top="430" Canvas.Left="276" Height="85" BorderThickness="2,0,0,0" BorderBrush="Gray"/>
 
         <Label Canvas.Top="426" Canvas.Left="296" Content="Connection Improvement" Style="{StaticResource SummaryLabelBold}" />
         <Label x:Name="lblConnectionImprovement" Canvas.Top="444" Canvas.Left="348" Style="{StaticResource SummaryLabelLight}" />
@@ -100,7 +100,7 @@
         <Label x:Name="lblBytesReceived" Canvas.Top="472" Canvas.Left="595" Style="{StaticResource SummaryLabelLight}" />
 
         <Label Canvas.Top="494" Canvas.Left="468" Content="Bytes sent" Style="{StaticResource SummaryLabelBold}" />
-        <Label x:Name="lblBytesSent" Canvas.Top="495" Canvas.Left="595" Style="{StaticResource SummaryLabelLight}" />
+        <Label x:Name="lblBytesSent" Canvas.Top="494" Canvas.Left="595" Style="{StaticResource SummaryLabelLight}" />
 
         <Label Canvas.Top="557" Canvas.Left="24" Content="GVPN Account:" FontSize="10" Foreground="LightGray" />
 
@@ -113,10 +113,10 @@
         </TextBlock>
 
         <TextBlock Width="86" Height="18" TextAlignment="Center" Canvas.Bottom="6" Canvas.Right="10">
-            <Hyperlink x:Name="Feedback" ToolTip="Feedback" Click="Feedback_Click">
+            <Hyperlink x:Name="btnFeedback" ToolTip="Feedback" Click="btnFeedback_Click">
                 <Canvas Width="86" Height="18" >
                     <Image Canvas.Top="3" Canvas.Left="10" Source="pack://application:,,,/Resources/feedback.png" />
-                    <Label Canvas.Top="0" Canvas.Left="23" Content="Feedback" Foreground="LightGray" FontSize="12" />
+                    <Label Canvas.Top="1" Canvas.Left="1" Padding="25,0,0,0"  Width="84" Content="Feedback" Foreground="LightGray" FontSize="12" />
                     <Border Width="86" Height="18" BorderThickness="1,1,1,1" BorderBrush="GreenYellow"></Border>
                 </Canvas>
             </Hyperlink>
