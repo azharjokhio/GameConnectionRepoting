@@ -16,7 +16,13 @@ using System.Windows.Shapes;
 
 namespace GameConnectionReporting
 {
-    public partial class MainWindow : Window
+    using System.Collections.Generic;
+
+    using OxyPlot;
+    using System.ComponentModel;
+    using OxyPlot.Series;
+
+    public partial class MainWindow : INotifyPropertyChanged
     {
 
         System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
@@ -27,7 +33,30 @@ namespace GameConnectionReporting
 
         bool IsGameConnected = true;
 
-        public IList<DataPoint> Points { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void RaisePropertyChanged(string property)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(property));
+            }
+        }
+        private PlotModel plotModel;
+
+        public PlotModel PlotModel
+        {
+            get
+            {
+                return this.plotModel;
+            }
+            set
+            {
+                this.plotModel = value;
+                this.RaisePropertyChanged("PlotModel");
+            }
+        }
 
         public MainWindow()
         {
@@ -39,11 +68,34 @@ namespace GameConnectionReporting
             ConnectGameServer();
             SetPerformanceUpdateTimer();
 
-            var vm = new MainViewModel();
-            this.DataContext = vm;
-   
+            this.PlotModel = CreatePlot();
+            this.DataContext = this;
         }
 
+        private PlotModel CreatePlot()
+        {
+            var pm = new PlotModel(); 
+            LineSeries lineSeries1 = new LineSeries();
+            lineSeries1.Points.Add(new DataPoint(0, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(10, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(20, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(30, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(40, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(50, GenerateRandomValue(0, 20)));
+            pm.Series.Add(lineSeries1);
+
+            LineSeries lineSeries2 = new LineSeries();
+            lineSeries2.Points.Add(new DataPoint(0, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(10, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(20, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(30, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(40, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(50, GenerateRandomValue(0, 20)));
+            pm.Series.Add(lineSeries2);
+
+            return pm;
+        }
+            
         #region Event Handlers
 
         protected override void OnStateChanged(EventArgs e)
@@ -101,11 +153,13 @@ namespace GameConnectionReporting
                 IsGameConnected = false;
                 lblGameConnectivity.Content = "Connect Game";
                 btnGameConnectivity.ToolTip = "Connect Game";
+                this.PlotModel = null;
             }
             else
             {
                 ConnectGameServer();
                 IsGameConnected = true;
+                this.PlotModel = this.CreatePlot();
                 lblGameConnectivity.Content = "Disconnect Game";
                 btnGameConnectivity.ToolTip = "Disconnect Game";
             }
@@ -222,6 +276,9 @@ namespace GameConnectionReporting
             GenerateRandomValue(lblPing, "", 0, 999);
             GenerateRandomValue(lblBytesReceived, "KB", 0, 999);
             GenerateRandomValue(lblBytesSent, "KB", 0, 999);
+
+            this.PlotModel = this.CreatePlot();
+
         }
 
         public void DisconnectGameServer()
@@ -263,6 +320,14 @@ namespace GameConnectionReporting
 
         }
 
+        public int GenerateRandomValue(int minNum, int maxNum)
+        {
+            lock (syncLock)
+            {
+                return random.Next(minNum, maxNum);
+            }
+        }
+
         public void GenerateRandomValue(Label lbl, string concatenationStr, int minNum, int maxNum)
         {
             lock (syncLock)
@@ -280,7 +345,7 @@ namespace GameConnectionReporting
         {
             System.Windows.Threading.DispatcherTimer performanceUpdateTimer = new System.Windows.Threading.DispatcherTimer();
             performanceUpdateTimer.Tick += new EventHandler(performanceUpdateTimer_Tick);
-            performanceUpdateTimer.Interval = new TimeSpan(0, 0, 30);
+            performanceUpdateTimer.Interval = new TimeSpan(0, 0, 5);
             performanceUpdateTimer.Start();
         }
         #endregion
