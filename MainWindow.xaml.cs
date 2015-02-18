@@ -26,8 +26,6 @@ namespace GameConnectionReporting
 
     public partial class MainWindow : INotifyPropertyChanged
     {
-        Gauge gauge1;
-
         System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
         System.Windows.Forms.ContextMenuStrip trayMenu = new System.Windows.Forms.ContextMenuStrip();
         System.Windows.Threading.DispatcherTimer performanceUpdateTimer = new System.Windows.Threading.DispatcherTimer();
@@ -47,6 +45,7 @@ namespace GameConnectionReporting
                 handler(this, new PropertyChangedEventArgs(property));
             }
         }
+
         private PlotModel plotModel;
 
         public PlotModel PlotModel
@@ -60,20 +59,6 @@ namespace GameConnectionReporting
                 this.plotModel = value;
                 this.RaisePropertyChanged("PlotModel");
             }
-        }
-
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            CreateNotifyIcon();
-            CreateNotifyStructure();
-
-            ConnectGameServer();
-            SetPerformanceUpdateTimer();
-
-            this.PlotModel = CreatePlot();
-            this.DataContext = this;
         }
 
         private PlotModel CreatePlot()
@@ -121,34 +106,23 @@ namespace GameConnectionReporting
 
             return pm;
 
-           // // Create some data
-           // this.Items = new Collection<Item>
-           //                 {
-           //                     new Item {Label = "Apples", Value1 = 37, Value2 = 12, Value3 = 19},
-           //                     new Item {Label = "Pears", Value1 = 7, Value2 = 21, Value3 = 9},
-           //                     new Item {Label = "Bananas", Value1 = 23, Value2 = 2, Value3 = 29}
-           //                 };
-
-           // // Create the plot model
-           // var tmp = new PlotModel { Title = "Column series", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightTop, LegendOrientation = LegendOrientation.Vertical };
-
-           // // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
-           // tmp.Axes.Add(new CategoryAxis { ItemsSource = this.Items, LabelField = "Label" });
-           // tmp.Axes.Add(new LinearAxis { Position = AxisPosition.Left, MinimumPadding = 0, AbsoluteMinimum = 0 });
-
-           // // Add the series, note that the BarSeries are using the same ItemsSource as the CategoryAxis.
-           // tmp.Series.Add(new ColumnSeries { Title = "2009", ItemsSource = this.Items, ValueField = "Value1" });
-           // tmp.Series.Add(new ColumnSeries { Title = "2010", ItemsSource = this.Items, ValueField = "Value2" });
-           // tmp.Series.Add(new ColumnSeries { Title = "2011", ItemsSource = this.Items, ValueField = "Value3" });
-
-         
-
-           // //this.DataContext = this;
-           // return tmp;
-           //// this.Model1 = tmp;
         }
 
-        //public Collection<Item> Items { get; set; }
+        Gauge gauge1;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            CreateNotifyIcon();
+            CreateNotifyStructure();
+
+            ConnectGameServer();
+            SetPerformanceUpdateTimer();
+
+            this.PlotModel = CreatePlot();
+            this.DataContext = this;
+        }
 
         #region Event Handlers
 
@@ -415,7 +389,7 @@ namespace GameConnectionReporting
         private void SetPerformanceUpdateTimer()
         {
             performanceUpdateTimer.Tick += new EventHandler(performanceUpdateTimer_Tick);
-            performanceUpdateTimer.Interval = new TimeSpan(0, 0, 5);
+            performanceUpdateTimer.Interval = new TimeSpan(0, 0, 2);
             performanceUpdateTimer.Start();
         }
         #endregion
@@ -450,13 +424,5 @@ namespace GameConnectionReporting
 
         #endregion
     }
-
-    //public class Item
-    //{
-    //    public string Label { get; set; }
-    //    public double Value1 { get; set; }
-    //    public double Value2 { get; set; }
-    //    public double Value3 { get; set; }
-    //}
 
 }
