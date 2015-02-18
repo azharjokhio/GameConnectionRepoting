@@ -78,21 +78,34 @@ namespace GameConnectionReporting
         {
             var pm = new PlotModel(); 
             LineSeries lineSeries1 = new LineSeries();
+            
             lineSeries1.Points.Add(new DataPoint(0, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(1, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(2, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(3, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(4, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(5, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(6, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(7, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(8, GenerateRandomValue(0, 20)));
+            lineSeries1.Points.Add(new DataPoint(9, GenerateRandomValue(0, 20)));
             lineSeries1.Points.Add(new DataPoint(10, GenerateRandomValue(0, 20)));
-            lineSeries1.Points.Add(new DataPoint(20, GenerateRandomValue(0, 20)));
-            lineSeries1.Points.Add(new DataPoint(30, GenerateRandomValue(0, 20)));
-            lineSeries1.Points.Add(new DataPoint(40, GenerateRandomValue(0, 20)));
-            lineSeries1.Points.Add(new DataPoint(50, GenerateRandomValue(0, 20)));
             pm.Series.Add(lineSeries1);
 
             LineSeries lineSeries2 = new LineSeries();
+
             lineSeries2.Points.Add(new DataPoint(0, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(1, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(2, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(3, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(4, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(5, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(6, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(7, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(8, GenerateRandomValue(0, 20)));
+            lineSeries2.Points.Add(new DataPoint(9, GenerateRandomValue(0, 20)));
             lineSeries2.Points.Add(new DataPoint(10, GenerateRandomValue(0, 20)));
-            lineSeries2.Points.Add(new DataPoint(20, GenerateRandomValue(0, 20)));
-            lineSeries2.Points.Add(new DataPoint(30, GenerateRandomValue(0, 20)));
-            lineSeries2.Points.Add(new DataPoint(40, GenerateRandomValue(0, 20)));
-            lineSeries2.Points.Add(new DataPoint(50, GenerateRandomValue(0, 20)));
+
             pm.Series.Add(lineSeries2);
 
             return pm;
