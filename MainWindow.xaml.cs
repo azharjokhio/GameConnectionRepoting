@@ -24,10 +24,11 @@ namespace GameConnectionReporting
 
     public partial class MainWindow : INotifyPropertyChanged
     {
-        Game game1;
+        Gauge gauge1;
 
         System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
         System.Windows.Forms.ContextMenuStrip trayMenu = new System.Windows.Forms.ContextMenuStrip();
+        System.Windows.Threading.DispatcherTimer performanceUpdateTimer = new System.Windows.Threading.DispatcherTimer();
 
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
@@ -71,12 +72,7 @@ namespace GameConnectionReporting
 
             this.PlotModel = CreatePlot();
             this.DataContext = this;
-
-            
-
         }
-
-   
 
         private PlotModel CreatePlot()
         {
@@ -279,13 +275,12 @@ namespace GameConnectionReporting
             lblActiveServer.Content = ActiveServers[random.Next(5)];
 
             double value1 = GenerateRandomValue(0, 100);
-            //GenerateRandomValue(lblConnectionImprovement, "%", 0, 100);
             lblConnectionImprovement.Content = value1 + "%";
-
+            
             //Set the current value of the gauges
-            game1 = new Game(0);
-            this.myGauge1.DataContext = game1;
-            game1.Score = value1;
+            gauge1 = new Gauge(0);
+            this.myGauge1.DataContext = gauge1;
+            gauge1.Score = value1;
 
             GenerateRandomValue(lblPing, "", 0, 999);
             GenerateRandomValue(lblBytesReceived, "KB", 0, 999);
@@ -293,11 +288,7 @@ namespace GameConnectionReporting
 
             this.PlotModel = this.CreatePlot();
 
-            //Update random scores
-            //Random r = new Random();
-            //game1.Score = r.Next(0, 100);
-
-
+            performanceUpdateTimer.Start();
     
         }
 
@@ -334,11 +325,17 @@ namespace GameConnectionReporting
             lblActiveServer.Content = "";
 
             lblConnectionImprovement.Content = "";
+            
+            //Set the current value of the gauges
+            gauge1 = new Gauge(0);
+            this.myGauge1.DataContext = gauge1;
+            gauge1.Score = 0;
+
             lblPing.Content = "";
             lblBytesReceived.Content = "";
             lblBytesSent.Content = "";
 
-            //game1.Score = 0;
+            performanceUpdateTimer.Stop();
 
         }
 
@@ -365,7 +362,6 @@ namespace GameConnectionReporting
 
         private void SetPerformanceUpdateTimer()
         {
-            System.Windows.Threading.DispatcherTimer performanceUpdateTimer = new System.Windows.Threading.DispatcherTimer();
             performanceUpdateTimer.Tick += new EventHandler(performanceUpdateTimer_Tick);
             performanceUpdateTimer.Interval = new TimeSpan(0, 0, 5);
             performanceUpdateTimer.Start();
@@ -374,10 +370,7 @@ namespace GameConnectionReporting
 
     }
 
-    /// <summary>
-    /// Helper class to simulate a game
-    /// </summary>
-    public class Game : INotifyPropertyChanged
+    public class Gauge : INotifyPropertyChanged
     {
         private double score;
 
@@ -394,12 +387,10 @@ namespace GameConnectionReporting
             }
         }
 
-
-        public Game(double scr)
+        public Gauge(double scr)
         {
             this.Score = scr;
         }
-
 
         #region INotifyPropertyChanged Members
 
