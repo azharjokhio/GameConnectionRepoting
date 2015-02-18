@@ -117,11 +117,17 @@ namespace GameConnectionReporting
             CreateNotifyIcon();
             CreateNotifyStructure();
 
+            //Set the current value of the gauges
+            gauge1 = new Gauge(0);
+            this.myGauge1.DataContext = gauge1;
+
             ConnectGameServer();
             SetPerformanceUpdateTimer();
 
             this.PlotModel = CreatePlot();
             this.DataContext = this;
+
+          
         }
 
         #region Event Handlers
@@ -302,10 +308,7 @@ namespace GameConnectionReporting
 
             double value1 = GenerateRandomValue(0, 100);
             lblConnectionImprovement.Content = value1 + "%";
-            
-            //Set the current value of the gauges
-            gauge1 = new Gauge(0);
-            this.myGauge1.DataContext = gauge1;
+         
             gauge1.Score = value1;
 
             GenerateRandomValue(lblPing, "", 0, 999);
@@ -389,7 +392,7 @@ namespace GameConnectionReporting
         private void SetPerformanceUpdateTimer()
         {
             performanceUpdateTimer.Tick += new EventHandler(performanceUpdateTimer_Tick);
-            performanceUpdateTimer.Interval = new TimeSpan(0, 0, 2);
+            performanceUpdateTimer.Interval = new TimeSpan(0, 0, 1);
             performanceUpdateTimer.Start();
         }
         #endregion
