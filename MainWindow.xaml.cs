@@ -21,6 +21,8 @@ namespace GameConnectionReporting
     using OxyPlot;
     using System.ComponentModel;
     using OxyPlot.Series;
+    using System.Collections.ObjectModel;
+    using OxyPlot.Axes;
 
     public partial class MainWindow : INotifyPropertyChanged
     {
@@ -76,9 +78,16 @@ namespace GameConnectionReporting
 
         private PlotModel CreatePlot()
         {
-            var pm = new PlotModel(); 
+            var pm = new PlotModel();
+            pm.TextColor = OxyColors.White;
+            pm.DefaultFontSize = 9;
+            pm.LegendPlacement = LegendPlacement.Outside;
+            pm.LegendPosition = LegendPosition.TopLeft;
+            pm.LegendOrientation = LegendOrientation.Vertical;
             LineSeries lineSeries1 = new LineSeries();
-            
+            lineSeries1.Title = "Internet Ping";
+            lineSeries1.TextColor = OxyColors.White;
+            lineSeries1.Color = OxyColors.SkyBlue;
             lineSeries1.Points.Add(new DataPoint(0, GenerateRandomValue(0, 20)));
             lineSeries1.Points.Add(new DataPoint(1, GenerateRandomValue(0, 20)));
             lineSeries1.Points.Add(new DataPoint(2, GenerateRandomValue(0, 20)));
@@ -93,7 +102,9 @@ namespace GameConnectionReporting
             pm.Series.Add(lineSeries1);
 
             LineSeries lineSeries2 = new LineSeries();
-
+            lineSeries2.Color = OxyColors.YellowGreen;
+            lineSeries2.TextColor = OxyColors.SkyBlue;
+            lineSeries2.Title = "Ping";
             lineSeries2.Points.Add(new DataPoint(0, GenerateRandomValue(0, 20)));
             lineSeries2.Points.Add(new DataPoint(1, GenerateRandomValue(0, 20)));
             lineSeries2.Points.Add(new DataPoint(2, GenerateRandomValue(0, 20)));
@@ -109,8 +120,36 @@ namespace GameConnectionReporting
             pm.Series.Add(lineSeries2);
 
             return pm;
+
+           // // Create some data
+           // this.Items = new Collection<Item>
+           //                 {
+           //                     new Item {Label = "Apples", Value1 = 37, Value2 = 12, Value3 = 19},
+           //                     new Item {Label = "Pears", Value1 = 7, Value2 = 21, Value3 = 9},
+           //                     new Item {Label = "Bananas", Value1 = 23, Value2 = 2, Value3 = 29}
+           //                 };
+
+           // // Create the plot model
+           // var tmp = new PlotModel { Title = "Column series", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightTop, LegendOrientation = LegendOrientation.Vertical };
+
+           // // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
+           // tmp.Axes.Add(new CategoryAxis { ItemsSource = this.Items, LabelField = "Label" });
+           // tmp.Axes.Add(new LinearAxis { Position = AxisPosition.Left, MinimumPadding = 0, AbsoluteMinimum = 0 });
+
+           // // Add the series, note that the BarSeries are using the same ItemsSource as the CategoryAxis.
+           // tmp.Series.Add(new ColumnSeries { Title = "2009", ItemsSource = this.Items, ValueField = "Value1" });
+           // tmp.Series.Add(new ColumnSeries { Title = "2010", ItemsSource = this.Items, ValueField = "Value2" });
+           // tmp.Series.Add(new ColumnSeries { Title = "2011", ItemsSource = this.Items, ValueField = "Value3" });
+
+         
+
+           // //this.DataContext = this;
+           // return tmp;
+           //// this.Model1 = tmp;
         }
-            
+
+        //public Collection<Item> Items { get; set; }
+
         #region Event Handlers
 
         protected override void OnStateChanged(EventArgs e)
@@ -411,5 +450,13 @@ namespace GameConnectionReporting
 
         #endregion
     }
+
+    //public class Item
+    //{
+    //    public string Label { get; set; }
+    //    public double Value1 { get; set; }
+    //    public double Value2 { get; set; }
+    //    public double Value3 { get; set; }
+    //}
 
 }

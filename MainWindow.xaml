@@ -167,7 +167,7 @@
 
         </Canvas>
 
-        <oxy:PlotView Model="{Binding PlotModel}" Background="Transparent" Margin="34,284,1,173"/>
+        <oxy:PlotView Model="{Binding PlotModel}" Background="Transparent"  Margin="34,230,0,153"/>
 
     </Grid>
 </Window>
