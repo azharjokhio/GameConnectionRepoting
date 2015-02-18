@@ -154,8 +154,12 @@
     <Resource Include="bin\Debug\logo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\CircularGauge.dll" />
     <Content Include="bin\Debug\GameConnectionReporting.exe" />
     <Content Include="bin\Debug\GameConnectionReporting.pdb" />
+    <Content Include="bin\Debug\OxyPlot.dll" />
+    <Content Include="bin\Debug\OxyPlot.Wpf.dll" />
+    <Content Include="bin\Debug\OxyPlot.Xps.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
