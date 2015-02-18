@@ -7,9 +7,8 @@
         Title="MainWindow" Height="583" Width="691" Style="{StaticResource Window}"  WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
 
     <Window.Background>
-        <ImageBrush ImageSource="Resources/pic.png"></ImageBrush>
+        <ImageBrush ImageSource="Resources/app_bg.png"></ImageBrush>
     </Window.Background>
-
 
     <Grid>
         <Canvas>
