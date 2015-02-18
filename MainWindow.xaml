@@ -102,6 +102,35 @@
             <Label x:Name="lblConnectionImprovement" Canvas.Top="444" Canvas.Left="348" Style="{StaticResource SummaryLabelLight}" />
 
 
+            <!--Black Gauge -->
+            <gauge:CircularGaugeControl x:Name="myGauge1" 
+                                        Radius="150" 
+                                        ScaleRadius="110" 
+                                        ScaleStartAngle="180" 
+                                        ScaleSweepAngle="180"
+                                        PointerLength="60" 
+                                        PointerCapRadius="0" 
+                                        MinValue="0" 
+                                        MaxValue="100" 
+                                        MajorDivisionsCount="10" 
+                                        MinorDivisionsCount="5" 
+                                        CurrentValue="{Binding Score}"
+                                        RangeIndicatorThickness="10"
+                                        RangeIndicatorRadius="50"
+                                        RangeIndicatorLightRadius="0"
+                                        RangeIndicatorLightOffset="80"
+                                        ScaleLabelRadius="90"
+                                        ScaleLabelSize="40,20"
+                                        ScaleLabelFontSize="10"
+                                        ScaleLabelForeground="Transparent"
+                                        MajorTickSize="10,3"
+                                        MinorTickSize="3,1"
+                                        MajorTickColor="Transparent"
+                                        MinorTickColor="Transparent"
+                                        GaugeBackgroundColor="Transparent"
+                                        PointerThickness ="16" Height="268" Width="307" Canvas.Left="212" Canvas.Top="381"
+                                        />
+
             <Border Canvas.Top="430" Canvas.Left="457" Height="85" BorderThickness="2,0,0,0" BorderBrush="Gray"/>
 
             <Label Canvas.Top="426" Canvas.Left="468" Content="Game connection time" Style="{StaticResource SummaryLabelBold}" />

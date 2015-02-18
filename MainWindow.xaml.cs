@@ -24,6 +24,7 @@ namespace GameConnectionReporting
 
     public partial class MainWindow : INotifyPropertyChanged
     {
+        Game game1;
 
         System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
         System.Windows.Forms.ContextMenuStrip trayMenu = new System.Windows.Forms.ContextMenuStrip();
@@ -70,6 +71,8 @@ namespace GameConnectionReporting
 
             this.PlotModel = CreatePlot();
             this.DataContext = this;
+
+            
 
         }
 
@@ -276,10 +279,13 @@ namespace GameConnectionReporting
             lblActiveServer.Content = ActiveServers[random.Next(5)];
 
             double value1 = GenerateRandomValue(0, 100);
-            GenerateRandomValue(lblConnectionImprovement, "%", 0, 100);
-            //lblConnectionImprovement.Content = value1 + "%";
+            //GenerateRandomValue(lblConnectionImprovement, "%", 0, 100);
+            lblConnectionImprovement.Content = value1 + "%";
 
-         
+            //Set the current value of the gauges
+            game1 = new Game(0);
+            this.myGauge1.DataContext = game1;
+            game1.Score = value1;
 
             GenerateRandomValue(lblPing, "", 0, 999);
             GenerateRandomValue(lblBytesReceived, "KB", 0, 999);
@@ -287,6 +293,12 @@ namespace GameConnectionReporting
 
             this.PlotModel = this.CreatePlot();
 
+            //Update random scores
+            //Random r = new Random();
+            //game1.Score = r.Next(0, 100);
+
+
+    
         }
 
         public void DisconnectGameServer()
@@ -326,6 +338,8 @@ namespace GameConnectionReporting
             lblBytesReceived.Content = "";
             lblBytesSent.Content = "";
 
+            //game1.Score = 0;
+
         }
 
         public int GenerateRandomValue(int minNum, int maxNum)
@@ -358,6 +372,40 @@ namespace GameConnectionReporting
         }
         #endregion
 
+    }
+
+    /// <summary>
+    /// Helper class to simulate a game
+    /// </summary>
+    public class Game : INotifyPropertyChanged
+    {
+        private double score;
+
+        public double Score
+        {
+            get { return score; }
+            set
+            {
+                score = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Score"));
+                }
+            }
+        }
+
+
+        public Game(double scr)
+        {
+            this.Score = scr;
+        }
+
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 
 }
